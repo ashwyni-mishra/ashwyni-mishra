@@ -1,0 +1,59 @@
+/* Reset and base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+	font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	line-height: 1.6;
+	color: #0f1724;
+	background: linear-gradient(180deg,#f8fbff 0%, #ffffff 100%);
+	-webkit-font-smoothing:antialiased;
+}
+
+.container { max-width: 980px; margin: 0 auto; padding: 16px; }
+
+/* Header */
+header#Header { background: #0b5cff; color: #fff; }
+.header-inner { display: flex; align-items: center; gap: 16px; justify-content: space-between; padding: 14px 16px; }
+.brand cite { font-weight: 700; font-style: normal; font-size: 1.1rem; }
+.header-inner nav a { color: #fff; text-decoration: none; margin-left: 10px; padding: 8px 10px; border-radius: 6px; transition: background .15s ease; }
+.header-inner nav a:hover, .header-inner nav a:focus { background: rgba(255,255,255,0.12); outline: none; }
+
+/* Page heading */
+h2 { text-align: center; margin: 22px 0; color: #06307a; font-weight: 600; }
+
+/* Sections */
+.section { background: #fff; border-radius: 12px; box-shadow: 0 6px 20px rgba(12,30,60,0.06); margin-bottom: 20px; padding: 18px; }
+
+.about-inner { display: flex; gap: 18px; align-items: center; }
+.profile-pic { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid #eef4ff; }
+.about h1 { font-size: 1.4rem; color: #062b66; }
+.tagline { color: #374151; margin-top: 6px; }
+.bio p { color: #475569; margin-top: 10px; }
+
+/* Skills */
+.skills-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 10px; list-style: none; padding-top: 8px; }
+.skills-list li { background: linear-gradient(180deg,#fbfdff,#ffffff); padding: 10px; border-radius: 8px; border: 1px solid #eef4ff; color: #334155; }
+
+/* Projects */
+.projects-list { list-style: none; padding-top: 8px; }
+.projects-list li { padding: 12px; border-radius: 8px; border: 1px solid #eef3ff; margin-bottom: 10px; }
+.project-desc { color: #475569; margin: 6px 0; }
+.projects-list a { color: #0b5cff; text-decoration: none; }
+
+/* Contact / social */
+.contact .social { display: flex; gap: 12px; align-items: center; justify-content: center; margin-top: 10px; }
+.contact img { width: 34px; height: 34px; display: block; }
+
+/* Footer */
+footer { text-align: center; color: #6b7280; padding: 16px 0; }
+
+/* Responsive */
+@media (max-width: 780px) {
+	.header-inner { flex-direction: column; align-items: flex-start; }
+	.about-inner { flex-direction: column; text-align: center; }
+	.about-inner img { margin: 0 auto; }
+}
+
+/* Small utility */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; }
+

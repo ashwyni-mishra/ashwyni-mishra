@@ -4,56 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ashwani Mishra || Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <h1>Ashwani Mishra</h1>
-        <p>1st Year B.Tech CSE (Cybersecurity)</p>
+    <header id="Header">
+        <div class="container header-inner">
+            <div class="brand"><cite>My Portfolio</cite></div>
+            <nav aria-label="Main navigation">
+                <a href="#">Home</a>
+                <a href="#About">About</a>
+                <a href="#Skills">Skills</a>
+                <a href="#Projects">Projects</a>
+                <a href="#get-in-touch">Contact</a>
+            </nav>
+        </div>
     </header>
 
+    <h2>Welcome to My Portfolio</h2>
+
     <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I am Ashwani Mishra.</p>
+        <!-- About Section -->
+        <section id="About" class="section about">
+            <div class="about-inner container">
+                <img src="assets/profile.jpg" alt="Ashwani Mishra" class="profile-pic">
+                <div>
+                    <h1>Ashwani Mishra</h1>
+                    <p class="tagline">Cybersecurity Enthusiast | Aspiring Ethical Hacker</p>
+                </div>
+            </div>
+            <div class="container bio">
+                <p>Aspiring Cybersecurity Professional | B.Tech in Computer Science and Engineering | Passionate about Ethical Hacking and Network Security.</p>
+                <p>Passionate about learning and sharing knowledge in the field of cybersecurity.</p>
+                <p>Skilled in network security, penetration testing, and vulnerability assessment.</p>
+            </div>
         </section>
-<section id="profile-photo">
-    <img src ="assets/profile.jpg" alt="Profile" width="100px" hight"100px">
-        <section id="skills">
+
+        <!-- Skills Section -->
+        <section id="Skills" class="section container">
             <h2>Skills</h2>
-            <ul>
+            <ul class="skills-list">
                 <li>Cybersecurity Fundamentals (CIA Triad, Risk Management)</li>
                 <li>Programming Languages: Python, C</li>
+                <li>Web Technologies: HTML, CSS</li>
                 <li>Networking Concepts (TCP/IP, Network Protocols)</li>
-                <li>Basic Knowledge of Security Tools (e.g., using a Kali Linux environment)</li>
+                <li>Basic Knowledge of Security Tools (e.g., Kali Linux)</li>
                 <li>Problem-Solving</li>
             </ul>
         </section>
 
-        <section id="projects">
+        <!-- Projects Section -->
+        <section id="Projects" class="section container">
             <h2>Projects</h2>
-            <div class="project">
-                <h3>[Project Title 1]</h3>
-                <p>Project Discription</p>
-                <p>Link to Project: <a href="[LINK TO YOUR GITHUB REPO]" target="_blank">[Project 1 GitHub Repository]</a></p>
-            </div>
-            <div class="project">
-                <h3>[Project Title 2]</h3>
-                  <p>Project Discription</p>
-                <p>Link to Project: <a href="[LINK TO GITHUB REPO]" target="_blank">[Project 2 GitHub Repository]</a></p>
-            </div>
-            <!-- Add more project here -->
+            <ul class="projects-list">
+                <li>
+                    <strong>Project 1</strong>
+                    <p class="project-desc">Description of the project</p>
+                    <a href="#">View project</a>
+                </li>
+                <li>
+                    <strong>Project 2</strong>
+                    <p class="project-desc">Description of the project</p>
+                    <a href="#">View project</a>
+                </li>
+            </ul>
         </section>
 
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <p>Email: <a href="mailto:mishra.ashwyni@gmail.com">mishra.ashwyni@gmail.com</a></p>
-            <p>GitHub: <a href="https://github.com/ashwyni-mishra" target="_blank">GitHub</a></p>
-            <p>LinkedIn: <a href="https://ashwyni-mishra.github.io/404.html]" target="_blank">Linkedin</a></p>
+        <!-- Get in Touch Section -->
+        <section id="get-in-touch" class="section container contact">
+            <h3>Get in Touch</h3>
+            <p>Feel free to reach out via email or follow me on LinkedIn and GitHub.</p>
+            <div class="social">
+                <a href="mailto:mishra.ashwyni@gmail.com"><img src="assets/gmail.png" alt="Gmail"></a>
+                <a href="https://linkedin.com/in/ashwyni-mishra" target="_blank" rel="noopener noreferrer"><img src="assets/linkedin.png" alt="LinkedIn"></a>
+                <a href="https://github.com/ashwyni-mishra" target="_blank" rel="noopener noreferrer"><img src="assets/github.png" alt="GitHub"></a>
+            </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="container">
         <p>&copy; 2025 Ashwani Mishra. All rights reserved.</p>
     </footer>
 

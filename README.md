@@ -92,10 +92,26 @@ I'm a **1st year B.Tech CSE (Cybersecurity)** student with a deep interest in th
 ### 🚀 Featured Projects
 
 <p align="center">
-  <a href="https://github.com/ashwyni-mishra/Encry">
-    <img src="projects_carousel.svg" alt="Featured Projects Carousel" width="100%" />
-  </a>
+  <img src="projects_carousel.svg" alt="Featured Projects Carousel" width="100%" />
 </p>
+
+#### 🛡️ [Encry](https://github.com/ashwyni-mishra/Encry)
+**Lightweight E2E Encrypted File Transfer**
+- **Security:** AES-256-GCM authenticated encryption with Scrypt key derivation.
+- **Privacy:** Client-side encryption ensures relay servers never see plaintext data.
+- **Versatility:** Supports both high-speed LAN transfers and secure internet sharing.
+
+#### 🔍 [ReconForge](https://github.com/ashwyni-mishra/reconForge)
+**Web Security Orchestration Framework**
+- **Efficiency:** Parallel execution of multiple security scanners (Nmap, Burp, etc.).
+- **Correlation:** Centralized interface to aggregate and analyze multi-tool outputs.
+- **Automation:** Streamlines the initial phases of penetration testing.
+
+#### 🧪 [CyberHomelab](https://github.com/ashwyni-mishra/cybersecurity-homelab-training)
+**Platform-Agnostic Training Framework**
+- **Isolation:** Reproducible and secure environments for hands-on SecOps training.
+- **Scalability:** Engineered to work across major OSs and hypervisors.
+- **Practicality:** Focused on bridging the gap between theory and real-world application.
 
 ---
 

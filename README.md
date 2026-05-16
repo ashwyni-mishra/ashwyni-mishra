@@ -15,6 +15,10 @@
 ### 📊 GitHub Statistics
 
 <p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=ashwyni-mishra&theme=dracula&no-bg=true&margin-w=15" alt="GitHub Trophies" />
+</p>
+
+<p align="center">
   <img src="https://github-stats-extended.vercel.app/api?username=ashwyni-mishra&show_icons=true&theme=transparent&hide_border=true" alt="Ashwani's GitHub stats" />
 </p>
 

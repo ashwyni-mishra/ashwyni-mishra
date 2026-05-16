@@ -1,4 +1,4 @@
-# Hi there, I'm Ashwani Mishra 👋
+# Hi there, I'm Ashwani Mishra
 
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F7F7F7&center=true&vCenter=true&width=435&lines=B.Tech+CSE+(Cybersecurity)+Student;Security+Researcher;Open+Source+Enthusiast;Python+Developer" alt="Typing SVG" />

@@ -1,0 +1,95 @@
+<svg width="800" height="200" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .marquee {
+      display: flex;
+      animation: scroll 30s linear infinite;
+    }
+    .card {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-1600px); }
+    }
+    .project-card {
+      fill: #0d1117;
+      stroke: #30363d;
+      stroke-width: 1;
+    }
+    .project-title {
+      fill: #58a6ff;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .project-desc {
+      fill: #8b949e;
+      font-size: 14px;
+    }
+    .project-tag {
+      fill: #238636;
+      font-size: 12px;
+    }
+  </style>
+  <g class="marquee">
+    <!-- Project 1: Encry -->
+    <g transform="translate(10, 10)">
+      <rect width="380" height="180" rx="10" class="project-card" />
+      <text x="20" y="40" class="project-title">🛡️ ENCRY</text>
+      <text x="20" y="70" class="project-desc">Secure File Sharing &amp; Access Control System.</text>
+      <text x="20" y="95" class="project-desc">AES-256-GCM encryption with Scrypt key derivation.</text>
+      <text x="20" y="120" class="project-desc">Supports LAN and Browser-based transfers.</text>
+      <rect x="20" y="140" width="80" height="25" rx="5" fill="#23863633" stroke="#238636" stroke-width="1" />
+      <text x="30" y="157" fill="#3fb950" font-size="12">Cybersecurity</text>
+      <rect x="110" y="140" width="60" height="25" rx="5" fill="#1f6feb33" stroke="#1f6feb" stroke-width="1" />
+      <text x="120" y="157" fill="#58a6ff" font-size="12">Python</text>
+    </g>
+
+    <!-- Project 2: Personal Website -->
+    <g transform="translate(410, 10)">
+      <rect width="380" height="180" rx="10" class="project-card" />
+      <text x="20" y="40" class="project-title">🌐 ashwanimishra.me</text>
+      <text x="20" y="70" class="project-desc">Personal Portfolio &amp; Security Blog.</text>
+      <text x="20" y="95" class="project-desc">Showcasing projects, skills, and research.</text>
+      <text x="20" y="120" class="project-desc">Hosted on Vercel with modern web tech.</text>
+      <rect x="20" y="140" width="80" height="25" rx="5" fill="#23863633" stroke="#238636" stroke-width="1" />
+      <text x="30" y="157" fill="#3fb950" font-size="12">Frontend</text>
+      <rect x="110" y="140" width="60" height="25" rx="5" fill="#1f6feb33" stroke="#1f6feb" stroke-width="1" />
+      <text x="120" y="157" fill="#58a6ff" font-size="12">Next.js</text>
+    </g>
+
+    <!-- Project 3: Security Researcher -->
+    <g transform="translate(810, 10)">
+      <rect width="380" height="180" rx="10" class="project-card" />
+      <text x="20" y="40" class="project-title">🔍 Vulnerability Research</text>
+      <text x="20" y="70" class="project-desc">Exploring Web &amp; Network Security.</text>
+      <text x="20" y="95" class="project-desc">Focused on CTFs, Nmap, and Burp Suite.</text>
+      <text x="20" y="120" class="project-desc">Documenting security findings and tools.</text>
+      <rect x="20" y="140" width="80" height="25" rx="5" fill="#f8514933" stroke="#f85149" stroke-width="1" />
+      <text x="30" y="157" fill="#f85149" font-size="12">Pentesting</text>
+    </g>
+
+    <!-- Project 4: Open Source -->
+    <g transform="translate(1210, 10)">
+      <rect width="380" height="180" rx="10" class="project-card" />
+      <text x="20" y="40" class="project-title">🚀 Open Source Contributor</text>
+      <text x="20" y="70" class="project-desc">Active contributor to security tools.</text>
+      <text x="20" y="95" class="project-desc">Helping build more secure software.</text>
+      <text x="20" y="120" class="project-desc">Python developer &amp; Linux enthusiast.</text>
+      <rect x="20" y="140" width="80" height="25" rx="5" fill="#8b949e33" stroke="#8b949e" stroke-width="1" />
+      <text x="30" y="157" fill="#c9d1d9" font-size="12">Community</text>
+    </g>
+
+    <!-- Duplicates for seamless loop -->
+    <g transform="translate(1610, 10)">
+      <rect width="380" height="180" rx="10" class="project-card" />
+      <text x="20" y="40" class="project-title">🛡️ ENCRY</text>
+      <text x="20" y="70" class="project-desc">Secure File Sharing &amp; Access Control System.</text>
+      <text x="20" y="95" class="project-desc">AES-256-GCM encryption with Scrypt key derivation.</text>
+      <text x="20" y="120" class="project-desc">Supports LAN and Browser-based transfers.</text>
+    </g>
+    <g transform="translate(2010, 10)">
+      <rect width="380" height="180" rx="10" class="project-card" />
+      <text x="20" y="40" class="project-title">🌐 ashwanimishra.me</text>
+    </g>
+  </g>
+</svg>

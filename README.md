@@ -15,11 +15,11 @@
 ### 📊 GitHub Statistics
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=ashwyni-mishra&show_icons=true&theme=transparent&hide_border=true" alt="Ashwani's GitHub stats" />
+  <img src="https://github-stats-extended.vercel.app/api?username=ashwyni-mishra&show_icons=true&theme=transparent&hide_border=true" alt="Ashwani's GitHub stats" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ashwyni-mishra&layout=compact&theme=dark&hide_border=true&langs_count=8" alt="Top Languages" />
+  <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=ashwyni-mishra&layout=compact&theme=dark&hide_border=true&langs_count=8" alt="Top Languages" />
   <img src="https://streak-stats.demolab.com?user=ashwyni-mishra&theme=dark&hide_border=true" alt="GitHub Streak" />
 </p>
 
@@ -45,7 +45,7 @@
   <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" />
 </p>
 
-<h4 align="center">Cybersecurity (Red & Blue Team)</h4>
+<h4 align="center">Cybersecurity (Offensive & Defensive)</h4>
 <p align="center">
   <img src="https://img.shields.io/badge/Nmap-000000?style=for-the-badge&logo=nmap&logoColor=white" />
   <img src="https://img.shields.io/badge/Burp_Suite-FF6633?style=for-the-badge&logo=portswigger&logoColor=white" />
@@ -55,16 +55,19 @@
   <img src="https://img.shields.io/badge/Splunk-000000?style=for-the-badge&logo=splunk&logoColor=white" />
   <img src="https://img.shields.io/badge/Elastic_Stack-005571?style=for-the-badge&logo=elastic-stack&logoColor=white" />
   <img src="https://img.shields.io/badge/OWASP-37474F?style=for-the-badge&logo=owasp&logoColor=white" />
+  <img src="https://img.shields.io/badge/Ghidra-000000?style=for-the-badge&logo=ghidra&logoColor=white" />
+  <img src="https://img.shields.io/badge/Volatility-FF6600?style=for-the-badge&logo=volatility&logoColor=white" />
 </p>
 
-<h4 align="center">Infrastructure & DevOps</h4>
+<h4 align="center">Networking & Infrastructure</h4>
 <p align="center">
   <img src="https://img.shields.io/badge/Linux-000000?style=for-the-badge&logo=linux&logoColor=white" />
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+  <img src="https://img.shields.io/badge/Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white" />
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
   <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
   <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" />
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Packet_Tracer-00518B?style=for-the-badge&logo=cisco&logoColor=white" />
 </p>
 
 <h4 align="center">Platforms & Certs</h4>

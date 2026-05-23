@@ -1,0 +1,56 @@
+package com.nyaysetu.backend.dto;
+
+import com.nyaysetu.backend.entity.CaseStatus;
+import com.nyaysetu.backend.entity.CaseStage;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+public class CaseDTO {
+    private UUID id;
+    private String title;
+    private String description;
+    private String caseType;
+    private CaseStatus status;
+    private String urgency;
+    private String petitioner;
+    private String respondent;
+    private LocalDateTime filedDate;
+    private LocalDateTime nextHearing;
+    private String assignedJudge;
+    private Long clientId;
+    private String clientName;
+    private int documentsCount;
+    private String lawyerProposalStatus;
+    private String draftPetition;
+    private Long lawyerId;
+    private String lawyerName;
+    private LocalDateTime updatedAt;
+    
+    // New Fields
+    private Boolean hasBsaCert;
+    private String summonsStatus;
+    private String aiGeneratedSummary;
+    private com.nyaysetu.backend.entity.DocumentStatus documentStatus;
+    
+    // Respondent Contact Information
+    private String respondentEmail;
+    private String respondentPhone;
+    private String respondentAddress;
+    private Boolean respondentIdentified;
+    
+    // User's role in this case (PETITIONER or RESPONDENT)
+    private String userRole;
+    
+    // Judge's precise 1-7 judicial stage (used by CaseStepper for accurate positioning)
+    private Integer currentJudicialStage;
+
+    // Formal procedural stage (drives the Judge's CaseLifecycleStepper)
+    private CaseStage stage;
+    
+    // Whether a lawyer has been formally assigned to this case
+    private Boolean assignedLawyer;
+}
+

@@ -1,0 +1,13 @@
+{
+  "name": "nyay-setu-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix frontend/nyaysetu-frontend",
+    "test": "npm run test --prefix frontend/nyaysetu-frontend",
+    "build": "npm run build --prefix frontend/nyaysetu-frontend",
+    "preview": "npm run preview --prefix frontend/nyaysetu-frontend",
+    "dev:signaling": "npm run dev --prefix signaling-server",
+    "start:signaling": "npm run start --prefix signaling-server"
+  }
+}

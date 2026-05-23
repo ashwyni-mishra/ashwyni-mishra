@@ -1,0 +1,458 @@
+/* Enhanced Mobile Responsiveness */
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+
+    /* Hero section adjustments */
+    section[id="home"] {
+        padding: 4rem 1rem 2rem !important;
+        min-height: 90vh !important;
+    }
+
+    /* Feature cards - single column on mobile */
+    .features-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Stats section - 2 columns on mobile */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+
+    /* CTA buttons - stack vertically */
+    .cta-buttons {
+        flex-direction: column !important;
+        width: 100%;
+    }
+
+    .cta-buttons a,
+    .cta-buttons button {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        max-width: 95% !important;
+        padding: 2rem 1.5rem !important;
+    }
+
+    /* News cards - stack vertically */
+    .news-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* How it works - single column */
+    .how-it-works-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Trust indicators - single column */
+    .trust-indicators-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Typography scaling */
+    h1 {
+        font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
+    }
+
+    h2 {
+        font-size: clamp(1.25rem, 5vw, 2rem) !important;
+    }
+
+    h3 {
+        font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
+    }
+
+    /* Padding adjustments */
+    section {
+        padding: 3rem 1rem !important;
+    }
+
+    /* Constitution page */
+    .constitution-layout {
+        flex-direction: column !important;
+    }
+
+    .constitution-sidebar {
+        width: 100% !important;
+        max-height: 50vh !important;
+    }
+
+    /* About page */
+    .about-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ===== DASHBOARD MOBILE STYLES ===== */
+
+    /* Dashboard cards - full width on mobile */
+    .card {
+        padding: 1rem !important;
+    }
+
+    /* Dashboard stat cards grid */
+    div[style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    div[style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    div[style*="grid-template-columns: repeat(2"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Improve touch targets - minimum 44px */
+    button,
+    a,
+    [role="button"] {
+        min-height: 44px;
+    }
+
+    /* Tables - horizontal scroll on mobile */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Forms - full width inputs */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+        /* Prevents iOS zoom */
+    }
+
+    /* Flex layouts that should stack */
+    div[style*="display: flex"][style*="gap"] {
+        flex-wrap: wrap !important;
+    }
+
+    /* Wide cards/containers - prevent overflow */
+    div[style*="max-width: 1200px"],
+    div[style*="max-width: 1000px"] {
+        max-width: 100% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* ===== AUTH PAGES MOBILE STYLES (Login/Signup) ===== */
+
+    /* Main grid container - stack vertically on mobile */
+    div[style*="gridTemplateColumns: '1fr 1fr'"],
+    div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Hide left side welcome content on mobile */
+    div[style*="gridTemplateColumns: '1fr 1fr'"]>div:first-child,
+    div[style*="grid-template-columns: 1fr 1fr"]>div:first-child {
+        display: none !important;
+    }
+
+    /* Auth form container */
+    div[style*="padding: '3rem'"],
+    div[style*="padding: 3rem"] {
+        padding: 1.5rem !important;
+        border-radius: 1rem !important;
+    }
+
+    /* Role selection grid on auth pages */
+    div[style*="gridTemplateColumns: 'repeat(2, 1fr)'"],
+    div[style*="grid-template-columns: repeat(2, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Auth page heading sizing */
+    h1[style*="fontSize: '3.5rem'"],
+    h1[style*="font-size: 3.5rem"] {
+        font-size: 2rem !important;
+    }
+
+    h2[style*="fontSize: '2rem'"],
+    h2[style*="font-size: 2rem"] {
+        font-size: 1.5rem !important;
+    }
+
+    /* Auth page main padding */
+    div[style*="padding: '100px 2rem 2rem 2rem'"],
+    div[style*="padding: 100px 2rem 2rem 2rem"] {
+        padding: 80px 1rem 1rem 1rem !important;
+    }
+
+    /* Decorative blobs - hide on mobile */
+    div[style*="position: 'absolute'"][style*="width: '800px'"],
+    div[style*="position: 'absolute'"][style*="width: '600px'"],
+    div[style*="position: absolute"][style*="width: 800px"],
+    div[style*="position: absolute"][style*="width: 600px"] {
+        display: none !important;
+    }
+
+
+        /* ===== CASE FILING FORM MOBILE FIXES ===== */
+
+    /* Fix form containers - use full width */
+    .form-container,
+    div[class*="form"],
+    div[class*="case-filing"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 16px !important;
+        margin: 0 !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Stack the 3-column layout vertically */
+    div[class*="columns"],
+    div[class*="grid"][class*="case"],
+    div[style*="display: flex"][style*="gap"] {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+
+    /* Make each column take full width */
+    div[class*="column"],
+    div[class*="col-"] {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+
+    /* Fix text wrapping - prevents cut off text */
+    h3, 
+    div[class*="title"],
+    div[class*="card"] p,
+    span[class*="type"] {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+    }
+
+    /* Fix the case type cards (Civil Case, Criminal Case, etc.) */
+    div[class*="case-card"],
+    div[class*="option-card"],
+    div[class*="type-card"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 12px !important;
+        padding: 16px !important;
+    }
+
+    /* Fix the step indicator (1 2 3 4) */
+    div[class*="step"],
+    div[class*="stepper"] {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        justify-content: center !important;
+    }
+
+    div[class*="step"] span,
+    div[class*="step-number"] {
+        display: inline-block !important;
+        padding: 8px 12px !important;
+        font-size: 14px !important;
+    }
+
+    /* Make buttons visible and touch-friendly */
+    button,
+    .next-btn,
+    .prev-btn,
+    button[type="submit"],
+    div[class*="button"] {
+        min-height: 48px !important;
+        padding: 12px 20px !important;
+        font-size: 16px !important;
+        margin: 8px 0 !important;
+        width: auto !important;
+    }
+
+    /* Stack Previous/Next buttons */
+    div[class*="navigation"],
+    div[class*="actions"] {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    div[class*="navigation"] button,
+    div[class*="actions"] button {
+        width: 100% !important;
+    }
+
+    /* Fix the "Case Type | Details | Documents" header */
+    div[class*="header"][class*="case"],
+    div[style*="display: flex"][style*="justify-content"] {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    /* Prevent horizontal scroll on body */
+    body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* Fix any overflowing elements */
+    * {
+        max-width: 100vw !important;
+
+    /* Hearings Page */
+    .hearings-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .hearings-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    .hearings-search-bar {
+        padding: 1rem !important;
+    }
+
+    .search-input {
+        width: 100% !important;
+    }
+
+    .hearing-card {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1.25rem !important;
+    }
+
+    .hearing-date-box {
+        width: 100% !important;
+        height: auto !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        padding: 0.75rem 1rem !important;
+        gap: 1rem !important;
+    }
+
+    .hearing-info {
+        width: 100% !important;
+    }
+
+    .hearing-action {
+        width: 100% !important;
+    }
+
+    .hearing-action button {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    .active-call-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+    }
+
+    .active-call-status {
+        width: 100% !important;
+        justify-content: space-between !important;
+        padding-top: 0.5rem !important;
+        border-top: 1px solid var(--border-glass) !important;
+
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hearings-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .hearings-sidebar {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+    }
+
+    .hearings-sidebar > div {
+        flex: 1 !important;
+        min-width: 300px !important;
+    }
+
+    .features-grid,
+    .news-grid,
+    .trust-indicators-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .how-it-works-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    section {
+        padding: 4rem 2rem !important;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px !important;
+    }
+
+    h1 {
+        font-size: 5rem !important;
+    }
+
+    h2 {
+        font-size: 3.5rem !important;
+    }
+}
+
+/* Performance optimizations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+}
+
+/* Optimize images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Prevent layout shift */
+.loading-skeleton {
+    min-height: 200px;
+}
+
+/* Improve text readability */
+p,
+li,
+span {
+    text-rendering: optimizeLegibility;
+}

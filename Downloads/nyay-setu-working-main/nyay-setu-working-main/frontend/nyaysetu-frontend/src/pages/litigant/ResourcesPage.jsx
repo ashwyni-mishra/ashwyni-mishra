@@ -8,7 +8,6 @@ import {
     FileText,
     Video,
     HelpCircle,
-    ArrowLeft,
     ExternalLink,
     Share2,
     Download,

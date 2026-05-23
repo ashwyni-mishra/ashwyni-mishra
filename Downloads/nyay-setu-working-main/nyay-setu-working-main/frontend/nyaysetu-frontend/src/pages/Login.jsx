@@ -1,0 +1,551 @@
+import { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { authAPI } from '../services/api';
+import useAuthStore from '../store/authStore';
+import { Mail, Lock, Eye, EyeOff, Camera, CheckCircle2, Scale, Shield, User, Briefcase, Gavel } from 'lucide-react';
+import Header from '../components/landing/Header';
+import FaceLoginModal from '../components/auth/FaceLoginModal';
+import ForgotPasswordModal from '../components/auth/ForgotPasswordModal';
+
+export default function Login() {
+    const [searchParams] = useSearchParams();
+    const isSessionExpired = searchParams.get('reason') === 'session_expired';
+    const { t } = useTranslation('auth');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [selectedRole, setSelectedRole] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [showFaceLogin, setShowFaceLogin] = useState(false);
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
+    const navigate = useNavigate();
+    const { setAuth } = useAuthStore();
+
+    // Mobile detection
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const roles = [
+        { value: '', label: t('auth:login.roles.allRoles'), icon: <User size={18} />, color: '#64748b' },
+        { value: 'LITIGANT', label: t('auth:login.roles.litigant'), icon: <Briefcase size={18} />, color: '#3b82f6' },
+        { value: 'LAWYER', label: t('auth:login.roles.lawyer'), icon: <Scale size={18} />, color: '#8b5cf6' },
+        { value: 'JUDGE', label: t('auth:login.roles.judge'), icon: <Gavel size={18} />, color: '#ec4899' }
+    ];
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        try {
+            // Backend expects { email, password, role }
+            const loginPayload = {
+                email,
+                password,
+                role: selectedRole || 'LITIGANT' // Default to LITIGANT if no role selected
+            };
+
+          //  console.log('Sending login request:', loginPayload);
+            const response = await authAPI.login(loginPayload);
+            const { token, user } = response.data;
+
+            if (selectedRole && user.role !== selectedRole) {
+                setError(`Invalid credentials for ${roles.find(r => r.value === selectedRole)?.label}`);
+                setLoading(false);
+                return;
+            }
+
+            setAuth(user, token);
+
+            const roleRoutes = {
+                ADMIN: '/admin',
+                JUDGE: '/judge',
+                LAWYER: '/lawyer',
+                LITIGANT: '/litigant',
+                POLICE: '/police',
+                TECH_ADMIN: '/admin',
+                TECHNICAL_TEAM: '/admin',
+                SUPER_JUDGE: '/admin'
+            };
+
+            navigate(roleRoutes[user.role] || '/');
+        } catch (err) {
+            console.error('Login error:', err);
+            setError(err.response?.data?.message || 'Invalid email or password');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div style={{ minHeight: '100vh', background: 'transparent' }}>
+            {/* Header */}
+            <Header hideAuthButtons={true} />
+
+            <div style={{
+                minHeight: '100vh',
+                paddingTop: '80px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: isMobile ? '70px 1rem 1rem 1rem' : '80px 2rem 1.5rem 2rem',
+                position: 'relative',
+                overflow: 'hidden'
+            }}>
+                {/* Visual Decorative Blobs - hidden on mobile */}
+                {!isMobile && (
+                    <>
+                        <div style={{
+                            position: 'absolute',
+                            width: '800px',
+                            height: '800px',
+                            background: 'radial-gradient(circle, rgba(30, 42, 68, 0.1) 0%, transparent 70%)',
+                            top: '-200px',
+                            right: '-200px',
+                            borderRadius: '50%',
+                            animation: 'pulse 8s ease-in-out infinite'
+                        }} />
+                        <div style={{
+                            position: 'absolute',
+                            width: '600px',
+                            height: '600px',
+                            background: 'radial-gradient(circle, rgba(30, 42, 68, 0.08) 0%, transparent 70%)',
+                            bottom: '-150px',
+                            left: '-150px',
+                            borderRadius: '50%',
+                            animation: 'pulse 6s ease-in-out infinite'
+                        }} />
+                    </>
+                )}
+
+                <div style={{
+                    width: '100%',
+                    maxWidth: isMobile ? '100%' : '1050px',
+                    display: 'grid',
+                    gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                    gap: isMobile ? '1.5rem' : '3rem',
+                    alignItems: 'center',
+                    position: 'relative',
+                    zIndex: 1
+                }}>
+                    {/* Left Side - Welcome (hidden on mobile) */}
+                    {!isMobile && (
+                        <div style={{ color: 'var(--text-main)' }}>
+                            <div style={{ marginBottom: '2rem' }}>
+                                <h1 style={{
+                                    fontSize: '2.8rem',
+                                    fontWeight: '900',
+                                    marginBottom: '0.75rem',
+                                    color: 'var(--color-primary)',
+                                    lineHeight: '1.2'
+                                }}>
+                                    {t('auth:login.pageTitle')}
+                                </h1>
+                                <p style={{
+                                    fontSize: '1.1rem',
+                                    color: 'var(--text-secondary)',
+                                    lineHeight: '1.7',
+                                    maxWidth: '440px'
+                                }}>
+                                    {t('auth:login.pageSubtitle')}
+                                </p>
+                            </div>
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                {[
+                                    { icon: <Shield size={24} />, text: t('auth:login.features.secureAuth'), color: '#10b981' },
+                                    { icon: <CheckCircle2 size={24} />, text: t('auth:login.features.realtimeUpdates'), color: '#1E2A44' },
+                                    { icon: <Scale size={24} />, text: t('auth:login.features.instantAccess'), color: '#334155' },
+                                    { icon: <Camera size={24} />, text: t('auth:login.features.faceLogin'), color: '#1E2A44' }
+                                ].map((item, idx) => (
+                                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                        <div style={{
+                                            width: '48px',
+                                            height: '48px',
+                                            borderRadius: '12px',
+                                            background: `${item.color}20`,
+                                            border: `2px solid ${item.color}40`,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: item.color
+                                        }}>
+                                            {item.icon}
+                                        </div>
+                                        <span style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: '500' }}>
+                                            {item.text}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Right Side - Form */}
+                    <div style={{
+                        background: 'var(--bg-glass-strong)',
+                        backdropFilter: 'var(--glass-blur)',
+                        borderRadius: isMobile ? '1rem' : '1.5rem',
+                        border: 'var(--border-glass-strong)',
+                        padding: isMobile ? '1.25rem' : '2.25rem',
+                        boxShadow: 'var(--shadow-glass)',
+                        width: '100%'
+                    }}>
+                        <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
+                            <h2 style={{
+                                fontSize: '1.75rem',
+                                fontWeight: '800',
+                                color: 'var(--text-main)',
+                                marginBottom: '0.35rem'
+                            }}>
+                                {t('auth:login.title')}
+                            </h2>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                                {t('auth:login.subtitle')}
+                            </p>
+                        </div>
+                        {isSessionExpired && (
+                            <div style={{
+                                backgroundColor: '#fff3cd',
+                                color: '#856404',
+                                padding: '12px 16px',
+                                borderRadius: '6px',
+                                marginBottom: '20px',
+                                border: '1px solid #ffeeba',
+                                fontSize: '14px',
+                                textAlign: 'center'
+                            }}>
+                                Your session expired for your security. Please log in again to continue.
+                            </div>
+                        )}
+                        {error && (
+                            <div style={{
+                                padding: '1rem',
+                                marginBottom: '1.5rem',
+                                background: 'rgba(239, 68, 68, 0.1)',
+                                color: '#ef4444',
+                                borderRadius: '0.75rem',
+                                border: '1px solid rgba(239, 68, 68, 0.3)',
+                                fontSize: '0.875rem',
+                                textAlign: 'center'
+                            }}>
+                                {error}
+                            </div>
+                        )}
+
+                        <form onSubmit={handleSubmit}>
+                            {/* Email */}
+                            <div style={{ marginBottom: '1.1rem' }}>
+                                <label style={{
+                                    display: 'block',
+                                    marginBottom: '0.5rem',
+                                    fontWeight: '600',
+                                    color: 'var(--text-main)',
+                                    fontSize: '0.875rem'
+                                }}>
+                                    {t('auth:login.email')}
+                                </label>
+                                <div style={{ position: 'relative' }}>
+                                    <Mail size={18} style={{
+                                        position: 'absolute',
+                                        left: '1rem',
+                                        top: '50%',
+                                        transform: 'translateY(-50%)',
+                                        color: 'var(--color-primary)'
+                                    }} />
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder={t('auth:login.emailPlaceholder')}
+                                        required
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.875rem 1rem 0.875rem 3rem',
+                                            background: 'var(--bg-glass)',
+                                            border: 'var(--border-glass)',
+                                            borderRadius: '0.75rem',
+                                            color: 'var(--text-main)',
+                                            fontSize: '1rem',
+                                            transition: 'all 0.2s'
+                                        }}
+                                        onFocus={(e) => {
+                                            e.target.style.borderColor = 'var(--border-focus)';
+                                            e.target.style.background = 'var(--bg-surface)';
+                                        }}
+                                        onBlur={(e) => {
+                                            e.target.style.borderColor = 'var(--border-light)';
+                                            e.target.style.background = 'var(--bg-glass)';
+                                        }}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Password */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <label style={{
+                                    display: 'block',
+                                    marginBottom: '0.5rem',
+                                    fontWeight: '600',
+                                    color: 'var(--text-main)',
+                                    fontSize: '0.875rem'
+                                }}>
+                                    {t('auth:login.password')}
+                                </label>
+                                <div style={{ position: 'relative' }}>
+                                    <Lock size={18} style={{
+                                        position: 'absolute',
+                                        left: '1rem',
+                                        top: '50%',
+                                        transform: 'translateY(-50%)',
+                                        color: 'var(--color-primary)'
+                                    }} />
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder={t('auth:login.passwordPlaceholder')}
+                                        required
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.875rem 3rem',
+                                            background: 'var(--bg-glass)',
+                                            border: 'var(--border-glass)',
+                                            borderRadius: '0.75rem',
+                                            color: 'var(--text-main)',
+                                            fontSize: '1rem',
+                                            transition: 'all 0.2s'
+                                        }}
+                                        onFocus={(e) => {
+                                            e.target.style.borderColor = 'var(--border-focus)';
+                                            e.target.style.background = 'var(--bg-surface)';
+                                        }}
+                                        onBlur={(e) => {
+                                            e.target.style.borderColor = 'var(--border-light)';
+                                            e.target.style.background = 'var(--bg-glass)';
+                                        }}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        style={{
+                                            position: 'absolute',
+                                            right: '1rem',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            background: 'none',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                            color: 'var(--text-secondary)'
+                                        }}
+                                    >
+                                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Role Selection - Tab Style */}
+                            <div style={{ marginBottom: '1.1rem' }}>
+                                <label style={{
+                                    display: 'block',
+                                    marginBottom: '0.75rem',
+                                    fontWeight: '600',
+                                    color: 'var(--text-main)',
+                                    fontSize: '0.875rem'
+                                }}>
+                                    {t('auth:login.selectRole')}
+                                </label>
+                                <div style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(2, 1fr)',
+                                    gap: '0.75rem'
+                                }}>
+                                    {roles.map(role => (
+                                        <button
+                                            key={role.value}
+                                            type="button"
+                                            onClick={() => setSelectedRole(role.value)}
+                                            style={{
+                                                padding: '0.875rem 1rem',
+                                                background: selectedRole === role.value
+                                                    ? `${role.color}15` // 15 = low opacity hex
+                                                    : 'var(--bg-glass)',
+                                                border: selectedRole === role.value
+                                                    ? `2px solid ${role.color}`
+                                                    : 'var(--border-glass)',
+                                                borderRadius: '0.75rem',
+                                                color: selectedRole === role.value ? role.color : 'var(--text-secondary)',
+                                                fontSize: '0.9rem',
+                                                fontWeight: '600',
+                                                cursor: 'pointer',
+                                                transition: 'all 0.2s',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '0.5rem'
+                                            }}
+                                            onMouseOver={(e) => {
+                                                if (selectedRole !== role.value) {
+                                                    e.currentTarget.style.borderColor = role.color;
+                                                }
+                                            }}
+                                            onMouseOut={(e) => {
+                                                if (selectedRole !== role.value) {
+                                                    e.currentTarget.style.borderColor = 'var(--border-light)';
+                                                }
+                                            }}
+                                        >
+                                            {role.icon}
+                                            {role.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Remember & Forgot */}
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                marginBottom: '1.25rem'
+                            }}>
+                                <label style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    cursor: 'pointer',
+                                    fontSize: '0.875rem',
+                                    color: 'var(--text-secondary)'
+                                }}>
+                                    <input type="checkbox" style={{ cursor: 'pointer' }} />
+                                    {t('auth:login.rememberMe')}
+                                </label>
+                                <button
+                                    type="button"
+                                    onClick={() => setShowForgotPassword(true)}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--color-primary)',
+                                        fontSize: '0.875rem',
+                                        fontWeight: '600',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    {t('auth:login.forgotPassword')}
+                                </button>
+                            </div>
+
+                            {/* Sign In Button */}
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                style={{
+                                    width: '100%',
+                                    padding: '0.85rem',
+                                    background: loading
+                                        ? 'var(--bg-glass-hover)'
+                                        : 'var(--color-primary)',
+                                    border: 'none',
+                                    borderRadius: '0.75rem',
+                                    color: 'white',
+                                    fontSize: '1rem',
+                                    fontWeight: '700',
+                                    cursor: loading ? 'not-allowed' : 'pointer',
+                                    boxShadow: '0 10px 30px rgba(37, 99, 235, 0.2)',
+                                    transition: 'all 0.3s',
+                                    marginBottom: '0.75rem'
+                                }}
+                            >
+                                {loading ? t('auth:login.signingIn') : t('auth:login.signIn')}
+                            </button>
+
+                            {/* Face Login */}
+                            <button
+                                type="button"
+                                onClick={() => setShowFaceLogin(true)}
+                                style={{
+                                    width: '100%',
+                                    padding: '0.75rem',
+                                    background: 'rgba(30, 42, 68, 0.08)',
+                                    border: '1px solid rgba(30, 42, 68, 0.2)',
+                                    borderRadius: '0.75rem',
+                                    color: 'var(--color-primary)',
+                                    fontSize: '0.95rem',
+                                    fontWeight: '600',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '0.75rem',
+                                    transition: 'all 0.3s'
+                                }}
+                                onMouseOver={(e) => {
+                                    e.currentTarget.style.background = 'rgba(30, 42, 68, 0.15)';
+                                    e.currentTarget.style.borderColor = 'rgba(30, 42, 68, 0.3)';
+                                }}
+                                onMouseOut={(e) => {
+                                    e.currentTarget.style.background = 'rgba(30, 42, 68, 0.08)';
+                                    e.currentTarget.style.borderColor = 'rgba(30, 42, 68, 0.2)';
+                                }}
+                            >
+                                <Camera size={20} />
+                                {t('auth:login.loginWithFace')}
+                            </button>
+                        </form>
+
+                        <div style={{ textAlign: 'center', marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                                {t('auth:login.noAccount')}{' '}
+                                <Link to="/signup" style={{
+                                    color: 'var(--color-primary)',
+                                    fontWeight: '600',
+                                    textDecoration: 'none'
+                                }}>
+                                    {t('auth:login.createAccount')}
+                                </Link>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Modals */}
+                <FaceLoginModal
+                    isOpen={showFaceLogin}
+                    onClose={() => setShowFaceLogin(false)}
+                    onSuccess={({ token, user }) => {
+                        setAuth(user, token);
+                        const roleRoutes = {
+                            ADMIN: '/admin',
+                            JUDGE: '/judge',
+                            LAWYER: '/lawyer',
+                            LITIGANT: '/litigant',
+                            TECH_ADMIN: '/admin',
+                            TECHNICAL_TEAM: '/admin',
+                            SUPER_JUDGE: '/admin'
+                        };
+                        navigate(roleRoutes[user.role] || '/');
+                    }}
+                />
+
+                <ForgotPasswordModal
+                    isOpen={showForgotPassword}
+                    onClose={() => setShowForgotPassword(false)}
+                />
+
+                <style>{`
+                    @keyframes pulse {
+                        0%, 100% { transform: scale(1); opacity: 0.8; }
+                        50% { transform: scale(1.1); opacity: 1; }
+                    }
+                `}</style>
+            </div>
+        </div>
+    );
+}
